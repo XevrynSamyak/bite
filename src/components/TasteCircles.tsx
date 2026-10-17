@@ -60,7 +60,7 @@ export default function TasteCircles() {
         easing: SPRING_EASING,
       })
   }
-// why im even doing this, i could just use a library but noooooo i have to do it myself and now im crying
+  // why im even doing this, i could just use a library but noooooo i have to do it myself and now im crying
   return (
     <div className="card wide circles-demo">
       <div className="orbit">

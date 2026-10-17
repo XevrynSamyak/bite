@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches
 const randomBetween = (min: number, max: number) => min + Math.random() * (max - min)
-const randomNearZero = () => (Math.random() + Math.random() + Math.random() - 1.5) / 1.5 
+const randomNearZero = () => (Math.random() + Math.random() + Math.random() - 1.5) / 1.5
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value))
 
 const smoothStep = (start: number, end: number, value: number) => {
@@ -25,10 +25,10 @@ const SEED_COLORS = ['#d9a066', '#fff1dc'].map(hexToRgb)
 const DUST_COLORS = ['#ffd9a0', '#f4b41a', '#ff8a3d', '#e8452c', '#fff1dc'].map(hexToRgb)
 
 type TextPoints = {
-  spots: Float32Array 
-  heightToWidth: number 
-  canvas: HTMLCanvasElement 
-  inkBox: [number, number, number, number] 
+  spots: Float32Array
+  heightToWidth: number
+  canvas: HTMLCanvasElement
+  inkBox: [number, number, number, number]
 }
 
 // Draw the text on a hidden canvas and give each spark one of the letter pixels to fly to.
@@ -320,7 +320,7 @@ export function startHeroAnimation(canvas: HTMLCanvasElement, hero: HTMLElement,
       aSeedAngle: [
         1,
         () => (Math.random() < 0.22 ? (((Math.random() * 6) | 0) * Math.PI) / 6 : -1),
-      ], 
+      ],
       aColor: [
         3,
         () => {
@@ -444,7 +444,7 @@ export function startHeroAnimation(canvas: HTMLCanvasElement, hero: HTMLElement,
     camera.updateProjectionMatrix()
     screenSize.set(screenWidth, screenHeight)
     sharedSettings.uPixelRatio.value = pixelRatio
-    sparkSettings.uSizeScale.value = 6 * (0.6 + 0.4 * Math.min(1, screenWidth / 1000)) 
+    sparkSettings.uSizeScale.value = 6 * (0.6 + 0.4 * Math.min(1, screenWidth / 1000))
   }
   addEventListener('resize', resize)
   resize()
@@ -457,15 +457,15 @@ export function startHeroAnimation(canvas: HTMLCanvasElement, hero: HTMLElement,
     const heroBox = hero.getBoundingClientRect(),
       scrollableHeight = heroBox.height - screenHeight
     const scrollProgress = scrollableHeight > 0 ? clamp(-heroBox.top / scrollableHeight, 0, 1) : 1
-    const scrollShift = Math.min(0, heroBox.bottom - screenHeight) 
+    const scrollShift = Math.min(0, heroBox.bottom - screenHeight)
     const heroOffScreen = scrollShift < -screenHeight * 1.3
     hero.style.setProperty('--scroll-progress', scrollProgress.toFixed(3))
     sharedSettings.uTime.value = reduceMotion ? 0 : now / 1000
 
     // animation stages
-    const gather = smoothStep(0, 0.26, scrollProgress) 
+    const gather = smoothStep(0, 0.26, scrollProgress)
     const phraseSolid =
-      smoothStep(0.26, 0.34, scrollProgress) * (1 - smoothStep(0.47, 0.54, scrollProgress)) 
+      smoothStep(0.26, 0.34, scrollProgress) * (1 - smoothStep(0.47, 0.54, scrollProgress))
     const toLogo = smoothStep(0.54, 0.8, scrollProgress) // phrase -> logo
     const logoSolid = smoothStep(0.8, 0.88, scrollProgress) // the real logo fades in
 

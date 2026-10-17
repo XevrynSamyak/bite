@@ -12,7 +12,7 @@ export default function Waitlist() {
     event.preventDefault()
     setJoined(true)
   }
-//i can use llm but i want to do it myself and now im fucking doneeeeeee
+  //i can use llm but i want to do it myself and now im fucking doneeeeeee
   return (
     <section className="card medium waitlist-card" id="join" aria-labelledby="join-title">
       <img className="waitlist-logo" src={LOGO} alt="" width={480} height={471} ref={logo} />

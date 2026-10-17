@@ -129,6 +129,7 @@ body::after {
   margin-right: auto;
 }
 .nav-links a {
+  white-space: nowrap;
   padding: 0.5rem 0.85rem;
   border-radius: 999px;
   text-decoration: none;
@@ -161,7 +162,7 @@ body::after {
 .pill-button:active {
   scale: 0.94;
 }
-@media (max-width: 720px) {
+@media (max-width: 900px) {
   .nav {
     justify-content: space-between;
   }
@@ -552,17 +553,6 @@ main .intro-copy h2 {
 }
 
 /* how it works */
-.steps {
-  margin: 0 0 1.5em;
-  padding-left: 1.25rem;
-}
-.steps li {
-  margin-bottom: 0.8em;
-  padding-left: 0.3rem;
-}
-.steps li::marker {
-  color: var(--text-muted);
-}
 .tabs {
   display: flex;
   gap: 4px;
@@ -1144,5 +1134,135 @@ main .banner h2 {
   *::before,
   *::after {
     transition: none !important;
+  }
+}
+
+/* how it works flowchart */
+main .flow-title {
+  text-align: center;
+}
+.flow {
+  position: relative;
+  max-width: 960px;
+  margin: 2rem auto 0;
+  padding-right: 36px; /* room for the loop line on the right */
+}
+.flow-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.flow-row-two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.flow-step {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px 20px;
+}
+.flow-step h3 {
+  margin: 0 0 0.35rem;
+  font: 700 1.15rem/1.2 var(--heading-font);
+}
+.flow-step p {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+.flow-number {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  aspect-ratio: 1;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  background: var(--turmeric);
+  color: var(--chocolate);
+  font: 800 0.9rem var(--heading-font);
+}
+.flow-engine {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  border-color: rgba(244, 180, 26, 0.45);
+  background:
+    linear-gradient(135deg, rgba(244, 180, 26, 0.14), rgba(240, 138, 46, 0.04)), var(--card);
+}
+.flow-signals {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.flow-signals li {
+  padding: 0.3em 0.75em;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.8125rem;
+}
+.flow-result {
+  text-align: center;
+}
+.flow-connector {
+  display: block;
+  width: 100%;
+  height: 40px;
+  overflow: visible;
+}
+.flow-connector path {
+  fill: none;
+  stroke: rgba(244, 180, 26, 0.55);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+}
+/* dashed loop from the last box back up to step 3, with an arrowhead pointing into it */
+.flow::after {
+  content: '';
+  position: absolute;
+  top: 48px;
+  bottom: 36px;
+  right: 0;
+  width: 36px;
+  border: 1.5px dashed rgba(244, 180, 26, 0.55);
+  border-left: 0;
+  border-radius: 0 16px 16px 0;
+}
+.flow::before {
+  content: '';
+  position: absolute;
+  top: 42px;
+  right: 24px;
+  border: 6px solid transparent;
+  border-right-color: rgba(244, 180, 26, 0.85);
+}
+@media (max-width: 700px) {
+  .flow {
+    padding-right: 22px;
+  }
+  .flow-row,
+  .flow-row-two {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  /* stacked boxes: one straight line between groups instead of branches */
+  .flow-connector {
+    height: 28px;
+    background: linear-gradient(rgba(244, 180, 26, 0.55), rgba(244, 180, 26, 0.55)) center / 1.5px
+      100% no-repeat;
+  }
+  .flow-connector path {
+    display: none;
+  }
+  .flow::after {
+    width: 22px;
+  }
+  .flow::before {
+    right: 10px;
   }
 }

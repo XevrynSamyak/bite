@@ -1,5 +1,6 @@
 import Hero, { LOGO } from './components/Hero'
 import PhoneFeed from './components/PhoneFeed'
+import HowItWorks from './components/HowItWorks'
 import MatchBreakdown from './components/MatchBreakdown'
 import TasteCircles from './components/TasteCircles'
 import FoodMap from './components/FoodMap'
@@ -103,27 +104,9 @@ export default function App() {
               </tbody>
             </table>
           </div>
-
-          <h2 id="how">How it works</h2>
-          <ol className="steps">
-            <li>
-              <strong>Set your taste.</strong> Cuisines, veg, non-veg or vegan, budget per meal,
-              casual or fine dining, street food or premium, cafés and desserts.
-            </li>
-            <li>
-              <strong>Follow food friends.</strong> See the visits they choose to share, within
-              their privacy settings.
-            </li>
-            <li>
-              <strong>Eat and log.</strong> BITE learns from what you save, skip, visit and revisit.
-            </li>
-            <li>
-              <strong>Get your picks.</strong> Every place is scored on seven signals: your taste,
-              friends' visits, repeat visits, budget fit, distance, cuisine preferences and recent
-              experiences.
-            </li>
-          </ol>
         </div>
+
+        <HowItWorks />
 
         <MatchBreakdown />
 
