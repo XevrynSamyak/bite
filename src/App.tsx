@@ -1,6 +1,7 @@
 import Hero, { LOGO } from './components/Hero'
 import PhoneFeed from './components/PhoneFeed'
 import HowItWorks from './components/HowItWorks'
+import RatingsVsBite from './components/RatingsVsBite'
 import MatchBreakdown from './components/MatchBreakdown'
 import TasteCircles from './components/TasteCircles'
 import FoodMap from './components/FoodMap'
@@ -74,37 +75,7 @@ export default function App() {
           </div>
         </section>
 
-        <div className="column">
-          <div className="table-block">
-            <p className="table-title">Same restaurant, two answers</p>
-            <table className="compare-table">
-              <thead>
-                <tr>
-                  <th scope="col">A rating tells you</th>
-                  <th scope="col">BITE tells you</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>4.8 stars</td>
-                  <td>94% match with your taste</td>
-                </tr>
-                <tr>
-                  <td>2,341 reviews from strangers</td>
-                  <td>4 of your friends went this month</td>
-                </tr>
-                <tr>
-                  <td>Bestseller: chicken biryani</td>
-                  <td>Your friends ordered the sushi</td>
-                </tr>
-                <tr>
-                  <td>Popular in your area</td>
-                  <td>People who eat like you come back twice a month</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <RatingsVsBite />
 
         <HowItWorks />
 
@@ -134,7 +105,7 @@ export default function App() {
 
           <h2 id="privacy">What BITE knows about you</h2>
           <div className="two-columns">
-            <div>
+            <div className="learns">
               <h3>BITE learns from</h3>
               <ul>
                 <li>Places you save and visits you log</li>
@@ -144,7 +115,7 @@ export default function App() {
                 <li>Reservations made through BITE</li>
               </ul>
             </div>
-            <div>
+            <div className="wont">
               <h3>BITE won't</h3>
               <ul>
                 <li>Read bank or UPI data without your explicit consent</li>
