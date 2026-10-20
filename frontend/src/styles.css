@@ -162,6 +162,41 @@ body::after {
 .pill-button:active {
   scale: 0.94;
 }
+.pill-button:disabled {
+  opacity: 0.6;
+  scale: 1;
+  cursor: wait;
+}
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-login {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.6rem 0.85rem;
+  background: none;
+  color: inherit;
+  font: 600 0.875rem/1 var(--body-font);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.nav-login:hover {
+  background: rgba(255, 236, 214, 0.12);
+}
+.nav-user {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+@media (max-width: 480px) {
+  .nav-user {
+    display: none;
+  }
+}
 @media (max-width: 900px) {
   .nav {
     justify-content: space-between;
@@ -970,7 +1005,8 @@ main .banner h2 {
   max-width: 28rem;
   margin-top: 1.75rem;
 }
-.waitlist input {
+.waitlist input,
+.auth-form input {
   flex: 1;
   min-width: 0;
   border: 1px solid rgba(255, 236, 214, 0.22);
@@ -981,10 +1017,12 @@ main .banner h2 {
   font-size: 0.9375rem;
   padding: 0.7rem 1.1rem;
 }
-.waitlist input::placeholder {
+.waitlist input::placeholder,
+.auth-form input::placeholder {
   color: var(--text-muted);
 }
-.waitlist input:focus-visible {
+.waitlist input:focus-visible,
+.auth-form input:focus-visible {
   outline-offset: 2px;
 }
 @media (max-width: 480px) {
@@ -995,7 +1033,10 @@ main .banner h2 {
     padding: 0.85rem;
   }
 }
-.joined-message {
+.waitlist + .form-error {
+  margin-top: 0.75rem;
+}
+.waitlist-card .joined-message {
   margin-top: 1.75rem;
   font-weight: 500;
 }
@@ -1020,6 +1061,78 @@ main .banner h2 {
   gap: 12px;
   font-size: 0.8125rem;
   color: var(--text-muted);
+}
+
+/* log in / register (AuthPage.tsx) */
+.auth {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: auto minmax(0, 420px);
+  justify-content: center;
+  align-items: center;
+  gap: clamp(48px, 9vw, 120px);
+  padding: 96px 24px 48px;
+}
+.auth-brand {
+  position: absolute;
+  top: 24px;
+  left: 28px;
+}
+.auth-preview .phone {
+  rotate: -4deg;
+}
+.auth-card {
+  margin: 0;
+  padding: clamp(24px, 4vw, 36px);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(244, 180, 26, 0.13), transparent 60%), var(--card);
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.8);
+}
+.auth-card h1 {
+  font: 800 clamp(2rem, 4vw, 2.5rem)/1.05 var(--heading-font);
+  margin: 0 0 0.6rem;
+}
+.auth-card .muted {
+  margin: 0;
+}
+.auth-form {
+  display: grid;
+  gap: 16px;
+  margin-top: 1.75rem;
+}
+.auth-form label {
+  display: grid;
+  gap: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.auth-form .pill-button {
+  margin-top: 6px;
+  padding: 0.85rem;
+  font-size: 0.9375rem;
+}
+.form-error {
+  margin: 0;
+  color: #ffb39e;
+  font-size: 0.875rem;
+}
+.auth-switch {
+  margin: 1.5rem 0 0;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+.auth-switch a {
+  color: var(--turmeric);
+  font-weight: 600;
+}
+@media (max-width: 860px) {
+  .auth {
+    grid-template-columns: minmax(0, 420px);
+  }
+  .auth-preview {
+    display: none;
+  }
 }
 
 /* scroll pop-ins (see usePopIn.ts) */

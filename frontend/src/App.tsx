@@ -6,6 +6,7 @@ import MatchBreakdown from './components/MatchBreakdown'
 import TasteCircles from './components/TasteCircles'
 import FoodMap from './components/FoodMap'
 import Waitlist from './components/Waitlist'
+import { api, useUser } from './auth'
 
 const sections = [
   ['#how', 'How it works'],
@@ -34,6 +35,8 @@ const faq = [
 ]
 
 export default function App() {
+  const [user, setUser] = useUser()
+
   return (
     <>
       <nav className="nav" aria-label="Main">
@@ -48,9 +51,27 @@ export default function App() {
             </a>
           ))}
         </div>
-        <a href="#join" className="pill-button">
-          Join the waitlist
-        </a>
+        <div className="nav-actions">
+          {user ? (
+            <>
+              <span className="nav-user">Hi, {user.name.split(' ')[0]}</span>
+              <button
+                type="button"
+                className="nav-login"
+                onClick={() => api('logout', {}).then(() => setUser(null))}
+              >
+                Log out
+              </button>
+            </>
+          ) : (
+            <a href="login" className="nav-login">
+              Log in
+            </a>
+          )}
+          <a href="#join" className="pill-button">
+            Join the waitlist
+          </a>
+        </div>
       </nav>
 
       <Hero />
@@ -171,7 +192,7 @@ export default function App() {
           </div>
         </div>
 
-        <Waitlist />
+        <Waitlist email={user?.email} />
       </main>
 
       <footer className="footer">

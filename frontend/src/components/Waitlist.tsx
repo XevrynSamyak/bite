@@ -1,17 +1,13 @@
-import { useState, type FormEvent } from 'react'
+import { useState } from 'react'
+import { useApiForm } from '../auth'
 import { usePopIn } from '../usePopIn'
 import { LOGO } from './Hero'
 
-export default function Waitlist() {
+// Saves the email in the backend's waitlist table. `email` is filled in for people who are logged in.
+export default function Waitlist({ email }: { email?: string }) {
   const [joined, setJoined] = useState(false)
+  const { submit, error, busy } = useApiForm('waitlist', () => setJoined(true))
   const logo = usePopIn<HTMLImageElement>()
-
-  // TODO: actually send the email somewhere (Formspree, a Google Form or our own API).
-  // Right now it only shows the thank-you message.
-  function submit(event: FormEvent) {
-    event.preventDefault()
-    setJoined(true)
-  }
   //i can use llm but i want to do it myself and now im fucking doneeeeeee
   return (
     <section className="card medium waitlist-card" id="join" aria-labelledby="join-title">
@@ -36,11 +32,18 @@ export default function Waitlist() {
               autoComplete="email"
               placeholder="example@gmail.com"
               aria-label="Email address"
+              defaultValue={email}
+              key={email} // fills it in once we know who's logged in
             />
-            <button className="pill-button" type="submit">
-              Join the waitlist
+            <button className="pill-button" type="submit" disabled={busy}>
+              {busy ? 'One sec…' : 'Join the waitlist'}
             </button>
           </form>
+        )}
+        {error && (
+          <p className="form-error" role="alert">
+            {error}
+          </p>
         )}
       </div>
     </section>
